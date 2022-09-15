@@ -129,19 +129,35 @@ func UserPassword(username, password string) *Userinfo {
 // and optionally a password.
 type Userinfo = url.Userinfo
 
-// Parse parses a raw url into a URI structure.
+// Parse parses a raw uri into a URI structure.
 //
-// The url may be relative (a path, without a host) or absolute
+// The uri may be relative (a path, without a host) or absolute
 // (starting with a scheme). Trying to parse a hostname and path
 // without a scheme is invalid but may not necessarily return an
 // error, due to parsing ambiguities.
-func Parse(rawURL string) (*URI, error) {
-	url, err := url.Parse(rawURL)
+func Parse(rawURI string) (*URI, error) {
+	url, err := url.Parse(rawURI)
 	if url == nil {
 		return nil, errOrNil(err)
 	}
 	uri := URI(*url)
 	return &uri, errOrNil(err)
+}
+
+// MustParse parses a raw uri into a URI structure, panicing if an error occurs.
+//
+// The uri may be relative (a path, without a host) or absolute (starting with a
+// scheme). Trying to parse a hostname and path without a scheme is invalid but
+// may not necessarily return an error, due to parsing ambiguities.
+//
+// # Panics
+// MustParse panics if the uri cannot be parsed.
+func MustParse(rawURI string) *URI {
+	uri, err := Parse(rawURI)
+	if err != nil {
+		panic(err)
+	}
+	return uri
 }
 
 // ParseRequestURI parses a raw url into a URI structure. It assumes that
