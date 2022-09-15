@@ -220,8 +220,8 @@ func (u *URI) EscapedFragment() string {
 //     the form host/path does not add its own /.
 //   - if u.RawQuery is empty, ?query is omitted.
 //   - if u.Fragment is empty, #fragment is omitted.
-func (u *URI) String() string {
-	return (*url.URL)(u).String()
+func (u URI) String() string {
+	return (*url.URL)(&u).String()
 }
 
 // Redacted is like String but replaces any password with "xxxxx".
