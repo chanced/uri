@@ -331,6 +331,10 @@ func (u *URI) UnmarshalBinary(text []byte) error {
 
 // MarshalText implements encoding.TextMarshaler
 func (u *URI) MarshalText() (text []byte, err error) {
+	s := u.String()
+	if s == "" {
+		return []byte{'#'}, nil
+	}
 	return []byte(u.String()), nil
 }
 
