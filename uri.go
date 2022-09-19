@@ -221,7 +221,11 @@ func (u *URI) EscapedFragment() string {
 //   - if u.RawQuery is empty, ?query is omitted.
 //   - if u.Fragment is empty, #fragment is omitted.
 func (u URI) String() string {
-	return (*url.URL)(&u).String()
+	s := (*url.URL)(&u).String()
+	if s == "" {
+		return "#"
+	}
+	return s
 }
 
 // Redacted is like String but replaces any password with "xxxxx".
