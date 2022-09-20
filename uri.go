@@ -288,6 +288,22 @@ func (u *URI) ResolveReference(ref *URI) *URI {
 	return &uri
 }
 
+func (u *URI) Clone() *URI {
+	return &URI{
+		Scheme:      u.Scheme,
+		Opaque:      u.Opaque,
+		Host:        u.Host,
+		Path:        u.Path,
+		RawPath:     u.RawPath,
+		ForceQuery:  u.ForceQuery,
+		RawQuery:    u.RawQuery,
+		Fragment:    u.Fragment,
+		User:        u.User,
+		OmitHost:    u.OmitHost,
+		RawFragment: u.RawFragment,
+	}
+}
+
 // Query parses RawQuery and returns the corresponding values.
 // It silently discards malformed value pairs.
 // To check errors use ParseQuery.

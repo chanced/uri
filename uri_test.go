@@ -2184,3 +2184,11 @@ func TestUnmarshalText(t *testing.T) {
 		}
 	}
 }
+
+func TestComparison(t *testing.T) {
+	a := URI{Scheme: "http", Host: "golang.org"}
+
+	b := URI{Scheme: "http", Host: "golang.org"}
+
+	fmt.Println(a == b)
+}
