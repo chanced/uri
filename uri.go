@@ -817,7 +817,7 @@ func validOptionalPort(port string) bool {
 //     the form host/path does not add its own /.
 //   - if u.RawQuery is empty, ?query is omitted.
 //   - if u.Fragment is empty, #fragment is omitted.
-func (u *URI) String() string {
+func (u URI) String() string {
 	var buf strings.Builder
 	if u.Scheme != "" {
 		buf.WriteString(u.Scheme)
