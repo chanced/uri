@@ -1072,6 +1072,12 @@ func resolvePath(base, ref string) string {
 	return r
 }
 
+// Clone returns a copy of the URI. It simply copies User if available.
+func (u *URI) Clone() *URI {
+	v := *u
+	return &v
+}
+
 // IsAbs reports whether the URI is absolute.
 // Absolute means that it has a non-empty scheme.
 func (u *URI) IsAbs() bool {
