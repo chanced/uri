@@ -834,7 +834,7 @@ func TestURIRedacted(t *testing.T) {
 		{
 			name: "empty URI",
 			url:  &URI{},
-			want: "",
+			want: "#",
 		},
 		{
 			name: "nil URI",
@@ -2070,7 +2070,7 @@ func TestMarshalText(t *testing.T) {
 	}{
 		{
 			&URI{},
-			"",
+			"#",
 		},
 		{
 			&URI{Scheme: "https", Host: "example.com"},
