@@ -475,6 +475,20 @@ func Parse(rawURI string) (*URI, error) {
 	}
 	return uri, nil
 }
+// MustParse parses a raw uri into a URI structure and panics there 
+// are errors.
+//
+// The uri may be relative (a path, without a host) or absolute
+// (starting with a scheme). Trying to parse a hostname and path
+// without a scheme is invalid but may not necessarily panic, 
+// due to parsing ambiguities.
+func MustParse(rawURI string) (*URI, error) {
+	uri, err := Parse(rawURI)
+	if err != nil {
+		panic(err)
+	}
+	return uri, nil
+}
 
 // ParseRequestURI parses a raw uri into a URI structure. It assumes that
 // uri was received in an HTTP request, so the uri is interpreted
