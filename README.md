@@ -8,7 +8,7 @@ uri is a wrapper around net/url where `uri.URI` (newtype of `url.URL`) implement
 
 Another notable change:
 
-`String` returns `"#"` rather than an empty string.
+If empty, `String` returns `"#"` rather than an empty string.
 
 ## License
 
